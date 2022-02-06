@@ -1,0 +1,115 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Users {% endblock title %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-md-8" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mt--7" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+
+      <!-- Table -->
+      <div class="row">
+        <div class="col">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <h3 class="mb-0">Users</h3>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col">first name</th>
+                    <th scope="col">last name</th>
+                    <th scope="col">last login</th>
+                    <th scope="col">date join</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                {% for user in users %}
+                 <tr>
+                    <th scope="row">
+                      <div class="media align-items-center">
+
+                        <div class="media-body">
+                          <span class="mb-0 text-sm">{{ user.email }}</span>
+                        </div>
+                      </div>
+                    </th>
+                    <td>
+                      {{ user.first_name }}
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                         {{ user.last_name }}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                         {{ user.last_login }}
+                      </span>
+                    </td>
+                    <td>
+                      <span class="badge badge-dot mr-4">
+                         {{ user.date_joined }}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <div class="dropdown">
+                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item" href="http://192.168.43.66:8000/serverAPI/remove_user/{{ user.email }}/">delete user</a>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+
+
+                {% endfor %}
+
+
+
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Dark table -->
+      <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/><br/>
+        <br/>
+        <br/>
+        <br/>
+
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

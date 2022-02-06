@@ -1,0 +1,103 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Advices {% endblock title %}
+
+{% block content %}
+
+    <!-- Header -->
+
+    <div class="header pb-8 pt-5 pt-md-8" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+<div class="header-body">
+          <button type="button" class="btn btn-default ml-4" data-toggle="modal" data-target="#exampleModal">
+  Add Advice
+</button>
+
+        </div>
+
+    </div>
+
+    <form method="POST">
+
+                {% csrf_token %}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Advice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            {{ form.image_url }}
+      </div><div class="form-group">
+          {{ form.title }}
+      </div><div class="form-group">
+          {{ form.content }}
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save advice</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </form>
+
+
+
+    <div class="container-fluid mt--7" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+
+    <div class="row">
+
+            {% for advice in advices %}
+
+                 <div class="card col-lg-6 mb-4">
+
+                            <img class="card-img-top" src="{{ advice.url }}" width="400" height="400"/>
+
+                      <div class="card-body">
+                          <h4 class="card-title">{{ advice.title }}</h4>
+                        <p class="card-text">{{ advice.content }}</p>
+                      </div>
+                 <div class="card-footer">
+                <a href="http://192.168.43.66:8000/serverAPI/remove_advice/{{ advice.id }}" class="btn btn-outline-default">delete</a>
+              </div>
+                 </div>
+                <br/>
+
+            {% endfor %}
+
+
+      </div>
+
+
+
+     <br/>
+         <br/>
+      <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+         <br/>
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
