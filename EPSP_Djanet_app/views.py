@@ -1,4 +1,5 @@
 import datetime
+import io
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,8 @@ from django.shortcuts import render, redirect
 # Create your views here.
 from django.template import loader
 from rest_framework.decorators import api_view
+from rest_framework.parsers import JSONParser
+from rest_framework.utils import json
 
 from EPSP_Djanet_app.forms import LoginForm
 from EPSP_Djanet_app.models import User
@@ -112,8 +115,12 @@ def getUsers(request):
 @api_view(['POST'])
 def addNewUser(request):
     if request.method == 'POST' and request.user.is_superuser:
-        u = UserSerializer(request.data,many=True)
-        User.save(u)
-
-        return JsonResponse({'state': 'good'}, safe=False)
+        stream = io.BytesIO(json)
+        data = JSONParser().parse(stream)
+        u_s = UserSerializer(data=data)
+        r = {'state': 'err'}
+        if u_s.is_valid():
+            u_s.save()
+            r = {'state': 'added'}
+        return JsonResponse(r, safe=False)
 
