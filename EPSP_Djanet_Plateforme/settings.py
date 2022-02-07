@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-a3^viijtg92q&^jw*oj3ow!+x-j=9hq#s-z*x5^r20zef9t^53
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.13', '192.168.98.205', ]
+ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'EPSP_Djanet_app.User'
 

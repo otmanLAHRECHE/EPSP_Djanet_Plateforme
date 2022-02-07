@@ -18,7 +18,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   axios
-    .get('/api/auth/user', tokenConfig(getState))
+    .get('/EPSP_Djanet_Plateforme/auth/users/me/', tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: USER_LOADED,
@@ -46,7 +46,7 @@ export const login = (username, password) => (dispatch) => {
   const body = JSON.stringify({ username, password });
 
   axios
-    .post('/api/auth/login', body, config)
+    .post('/EPSP_Djanet_Plateforme/auth/token/login/', body, config)
     .then((res) => {
       dispatch({
         type: LOGIN_SUCCESS,
