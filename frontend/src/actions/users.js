@@ -22,7 +22,7 @@ export const deleteUser = (id) => (dispatch, getState) => {
   axios
     .delete(`/EPSP_Djanet_Plateforme/delete_user/${id}/`, tokenConfig(getState))
     .then((res) => {
-      dispatch(createMessage({ deleteLead: 'Lead Deleted' }));
+      dispatch(createMessage({ deleteUser: 'User Deleted' }));
       dispatch({
         type: DELETE_USER,
         payload: id,
@@ -36,7 +36,7 @@ export const addNewUser = (lead) => (dispatch, getState) => {
   axios
     .post('/api/leads/', lead, tokenConfig(getState))
     .then((res) => {
-      dispatch(createMessage({ addLead: 'User Added' }));
+      dispatch(createMessage({ addNewUser: 'User Added' }));
       dispatch({
         type: ADD_NEW_USER,
         payload: res.data,

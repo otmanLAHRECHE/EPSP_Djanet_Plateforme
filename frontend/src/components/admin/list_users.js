@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUsers, deleteUser } from '../../actions/users';
+import Users from "../../reducers/users";
 
 export class ListUsers extends Component {
   static propTypes = {
@@ -31,13 +32,13 @@ export class ListUsers extends Component {
           <tbody>
             {this.props.users.map((user) => (
               <tr key={user.id}>
-                <td>{lead.id}</td>
-                <td>{lead.name}</td>
-                <td>{lead.email}</td>
-                <td>{lead.message}</td>
+                <td>{user.id}</td>
+                <td>{user.email}</td>
+                <td>{user.date_joined}</td>
+                <td>{user.service}</td>
                 <td>
                   <button
-                    onClick={this.props.deleteUser.bind(this, lead.id)}
+                    onClick={this.props.deleteUser.bind(this, user.id)}
                     className="btn btn-danger btn-sm"
                   >
                     {' '}
@@ -57,4 +58,4 @@ const mapStateToProps = (state) => ({
   leads: state.leads.leads,
 });
 
-export default connect(mapStateToProps, { getLeads, deleteLead })(Leads);
+export default connect(mapStateToProps, { getUsers, deleteUser })(Users);

@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
     case DELETE_USER:
       return {
         ...state,
-        users: state.users.filter((lead) => lead.id !== action.payload),
+        users: state.users.filter((user) => user.id !== action.payload),
       };
     case ADD_NEW_USER:
       return {

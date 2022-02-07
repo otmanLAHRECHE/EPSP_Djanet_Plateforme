@@ -4,6 +4,6 @@ from EPSP_Djanet_app.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('id','email','service')
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'service', 'date_joined')
