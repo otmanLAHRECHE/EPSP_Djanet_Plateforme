@@ -109,3 +109,11 @@ def getUsers(request):
         user_serialis = UserSerializer(queryset, many=True)
         return JsonResponse(user_serialis.data, safe=False)
 
+@api_view(['POST'])
+def addNewUser(request):
+    if request.method == 'POST' and request.user.is_superuser:
+        u = UserSerializer(request.data,many=True)
+        User.save(u)
+
+        return JsonResponse({'state': 'good'}, safe=False)
+

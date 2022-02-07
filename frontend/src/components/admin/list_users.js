@@ -55,7 +55,7 @@ export class ListUsers extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  leads: state.leads.leads,
+  users: state.users.users,
 });
 
 export default connect(mapStateToProps, { getUsers, deleteUser })(Users);

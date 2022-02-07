@@ -5,45 +5,35 @@ import { addNewUser } from '../../actions/users';
 
 export class Form extends Component {
   state = {
-    name: '',
     email: '',
-    message: '',
+    password: '',
+    service: '',
   };
 
   static propTypes = {
-    addLead: PropTypes.func.isRequired,
+    addNewUser: PropTypes.func.isRequired,
   };
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  onChange = (e) => this.setState({ [e.target.email]: e.target.value });
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const lead = { name, email, message };
-    this.props.addLead(lead);
+    const { email, password, service } = this.state;
+    const user = { email, password, service };
+    this.props.addNewUser(user);
     this.setState({
-      name: '',
       email: '',
-      message: '',
+      password: '',
+      service: '',
     });
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { email, password, service } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
-        <h2>Add Lead</h2>
+        <h2>Add User</h2>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label>Name</label>
-            <input
-              className="form-control"
-              type="text"
-              name="name"
-              onChange={this.onChange}
-              value={name}
-            />
-          </div>
           <div className="form-group">
             <label>Email</label>
             <input
@@ -55,13 +45,23 @@ export class Form extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Message</label>
+            <label>Password</label>
+            <input
+              className="form-control"
+              type="password"
+              name="password"
+              onChange={this.onChange}
+              value={password}
+            />
+          </div>
+          <div className="form-group">
+            <label>service</label>
             <textarea
               className="form-control"
               type="text"
-              name="message"
+              name="service"
               onChange={this.onChange}
-              value={message}
+              value={service}
             />
           </div>
           <div className="form-group">
