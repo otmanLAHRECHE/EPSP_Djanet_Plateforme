@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React ,{ Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
@@ -21,10 +21,10 @@ const alertOptions = {
 };
 
 class App extends Component {
-  /*
+
   componentDidMount() {
     store.dispatch(loadUser());
-  }*/
+  }
 
   render() {
     return (
@@ -35,10 +35,10 @@ class App extends Component {
               <Header />
               <Alerts />
               <div className="container">
-                <Switch>
-                  <PrivateRoute exact path="/" component={Dashboard} />
+                <Routes>
+
                   <Route exact path="/login" component={Login} />
-                </Switch>
+                </Routes>
               </div>
             </Fragment>
           </Router>
