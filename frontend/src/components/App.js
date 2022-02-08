@@ -36,8 +36,8 @@ class App extends Component {
               <Alerts />
               <div className="container">
                 <Routes>
-
-                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/" element={<Dashboard/>} />
+                  <Route exact path="/login" element={<Login/>} />
                 </Routes>
               </div>
             </Fragment>

@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getUsers, deleteUser } from '../../actions/users';
-import Users from "../../reducers/users";
 
 export class ListUsers extends Component {
+
   static propTypes = {
     users: PropTypes.array.isRequired,
     getUsers: PropTypes.func.isRequired,
