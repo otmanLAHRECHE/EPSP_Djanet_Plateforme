@@ -44,6 +44,8 @@ export const login = (username, password) => (dispatch) => {
 
   // Request Body
   const body = JSON.stringify({ username, password });
+  console.log(body);
+  console.log(config);
 
   axios
     .post('/EPSP_Djanet_Plateforme/auth/token/login/', body, config)

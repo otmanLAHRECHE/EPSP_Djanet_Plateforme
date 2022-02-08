@@ -1,6 +1,6 @@
 import React ,{ Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter, HashRouter as Router, Route, Routes} from 'react-router-dom';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
 
@@ -30,18 +30,18 @@ class App extends Component {
     return (
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
-          <Router>
+          <BrowserRouter>
             <Fragment>
               <Header />
               <Alerts />
               <div className="container">
                 <Routes>
-                  <Route exact path="/" element={<Dashboard/>} />
+                  <Route exact path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
                   <Route exact path="/login" element={<Login/>} />
                 </Routes>
               </div>
             </Fragment>
-          </Router>
+          </BrowserRouter>
         </AlertProvider>
       </Provider>
     );
