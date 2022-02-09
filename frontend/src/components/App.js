@@ -22,12 +22,12 @@ const alertOptions = {
 
 class App extends Component {
 
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
+
 
   render() {
+    console.log("render");
     return (
+
       <Provider store={store}>
         <AlertProvider template={AlertTemplate} {...alertOptions}>
           <BrowserRouter>

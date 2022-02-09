@@ -7,7 +7,7 @@ import { login } from '../../actions/auth';
 
 export class Login extends Component {
   state = {
-    username: '',
+    email: '',
     password: '',
   };
 
@@ -18,7 +18,7 @@ export class Login extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    this.props.login(this.state.email, this.state.password);
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -27,7 +27,7 @@ export class Login extends Component {
     if (this.props.isAuthenticated) {
       return <Navigate to="/" />;
     }
-    const { username, password } = this.state;
+    const { email, password } = this.state;
     return (
 
 
@@ -42,7 +42,7 @@ export class Login extends Component {
                 className="form-control"
                 name="username"
                 onChange={this.onChange}
-                value={username}
+                value={email}
               />
             </div>
 
