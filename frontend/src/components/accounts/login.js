@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
@@ -38,9 +38,9 @@ export class Login extends Component {
             <div className="form-group">
               <label>Username</label>
               <input
-                type="text"
+                type="email"
                 className="form-control"
-                name="username"
+                name="email"
                 onChange={this.onChange}
                 value={email}
               />
