@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from rest_framework.utils import json
 
 from EPSP_Djanet_app.forms import LoginForm
@@ -110,7 +111,7 @@ def getUsers(request):
         print(queryset)
 
         user_serialis = UserSerializer(queryset, many=True)
-        return JsonResponse(user_serialis.data, safe=False)
+        return Response(user_serialis.data)
 
 @api_view(['POST'])
 def addNewUser(request):

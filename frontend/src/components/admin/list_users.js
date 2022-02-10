@@ -16,6 +16,7 @@ export class ListUsers extends Component {
   }
 
   render() {
+
     return (
       <Fragment>
         <h2>Users</h2>

@@ -29,6 +29,7 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@babel/helper-create-class-features-plugin": "^7.17.1",
     "axios": "^0.25.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",

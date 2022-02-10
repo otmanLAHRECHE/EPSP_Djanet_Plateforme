@@ -6,6 +6,7 @@ import { GET_USER, DELETE_USER, ADD_NEW_USER } from './types';
 
 
 export const getUsers = () => (dispatch, getState) => {
+    console.log(tokenConfig(getState));
   axios
     .get('/EPSP_Djanet_Plateforme/users_list/', tokenConfig(getState))
     .then((res) => {
@@ -14,7 +15,7 @@ export const getUsers = () => (dispatch, getState) => {
         payload: res.data,
       });
     })
-    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status,console.log(tokenConfig(getState)))));
 };
 
 
