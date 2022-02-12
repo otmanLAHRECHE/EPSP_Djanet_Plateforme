@@ -12,25 +12,32 @@ import {
   REGISTER_FAIL,
 } from './types';
 
-// CHECK TOKEN & LOAD USER
-export const loadUser = () => (dispatch, getState) => {
-  // User Loading
-  dispatch({ type: USER_LOADING });
 
-  axios
-    .get('/EPSP_Djanet_Plateforme/auth/users/me/', tokenConfig(getState))
-    .then((res) => {
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR,
-      });
+
+// CHECK TOKEN & LOAD USER
+export const loadUser = () => async (token) => {
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/auth/users/me/',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':token,
+        },
+        body: JSON.stringify()
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("User loaded");
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
     });
+  }
 };
 
 
@@ -63,65 +70,65 @@ export const login_api = async (username, password) => {
   }
 };
 
+
+
 // REGISTER USER
-export const register = ({ username, password, email }) => (dispatch) => {
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  // Request Body
-  const body = JSON.stringify({ username, email, password });
-
-  axios
-    .post('/api/auth/register', body, config)
-    .then((res) => {
-      dispatch({
-        type: REGISTER_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: REGISTER_FAIL,
-      });
+export const register = async (email,password,service,token) => {
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/create_user/',
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        },
+        body: JSON.stringify({
+              "email": email,
+              "password": password,
+              "service": service,
+            })
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("User"+email+" created");
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
     });
+  }
 };
 
+
+
+
 // LOGOUT USER
-export const logout = () => (dispatch, getState) => {
-  axios
-    .post('/api/auth/logout/', null, tokenConfig(getState))
-    .then((res) => {
-      dispatch({ type: 'CLEAR_LEADS' });
-      dispatch({
-        type: LOGOUT_SUCCESS,
-      });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
+export const logout =  async (token) => {
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/auth/token/logout/',
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        },
+        body: JSON.stringify()
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("User" + email + " created");
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
     });
+  }
 };
 
 // Setup config with token - helper function
-export const tokenConfig = (getState) => {
-  // Get token from state
-  const token = getState().auth.token;
-
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  // If token, add to headers config
-  if (token) {
-    config.headers['Authorization'] = `Token ${token}`;
-  }
-
-  return config;
-};
