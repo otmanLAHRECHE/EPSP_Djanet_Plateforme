@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addNewUser } from '../../actions/users';
 
@@ -75,4 +74,4 @@ export class Form extends Component {
   }
 }
 
-export default connect(null, { addNewUser })(Form);
+export default Form;

@@ -59,4 +59,4 @@ const mapStateToProps = (state) => ({
   users: state.users.users,
 });
 
-export default connect(mapStateToProps, { getUsers, deleteUser })(ListUsers);
+export default ListUsers;

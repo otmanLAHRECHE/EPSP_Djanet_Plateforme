@@ -33,34 +33,34 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-// LOGIN USER
-export const login = (email, password) => (dispatch) => {
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
 
-  // Request Body
-  const body = JSON.stringify({ email, password });
-  console.log(body);
 
-  axios
-    .post('/EPSP_Djanet_Plateforme/auth/token/login/', body, config)
-    .then((res) => {
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: LOGIN_FAIL,
-      });
+export const login_api = async (username, password) => {
+  const response = await fetch(
+        `/EPSP_Djanet_Plateforme/auth/token/login/`,
+        {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              "email": username,
+              "password": password,
+            })
+        }
+    );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("Yeah! Authenticated! and stored");
+    await localStorage.setItem("auth_token", text.access);
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value])=>{
+      fail(`${key}: ${value}`);
     });
-
+  }
 };
 
 // REGISTER USER

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { login } from '../../actions/auth';
+import { login_api } from '../../actions/auth';
+
 
 
 export class Login extends Component {
@@ -11,20 +10,17 @@ export class Login extends Component {
     password: '',
   };
 
-  static propTypes = {
-    login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
-  };
 
-  onSubmit = (e) => {
+  onSubmit = async (e) => {
     e.preventDefault();
-    this.props.login(this.state.email, this.state.password);
+    console.log("Loggin in with", this.state.email, this.state.email);
+    await login_api(this.state.email, this.state.password);
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    if (this.props.isAuthenticated) {
+    if (localStorage.getItem("auth_token")) {
       return <Navigate to="/" />;
     }
     const { email, password } = this.state;
@@ -69,8 +65,5 @@ export class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
 
-export default connect(mapStateToProps, { login })(Login);
+export default Login;
