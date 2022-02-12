@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Static assets - Used to load the Favicon -->
+{% load static %}
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+     {% block title %} MyCAR admin  {% endblock %}
+  </title>
+
+
+
+  <!-- Favicon - loaded as static -->
+  <link href="{% static 'assets/img/brand/global_icon.png' %}" rel="icon" type="image/png">
+
+  <!-- Fonts -->
+
+
+  <!-- Custom styles for this template -->
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="/static/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+  <link href="/static/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+
+  <!-- CSS Files -->
+  <link href="/static/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+
+
+
+
+
+  <!-- Specific CSS goes HERE -->
+  {% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+<body style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+
+  <div class="main-content">
+
+    {% include "includes/navigation-fullscreen.html" %}
+
+    <!-- Header -->
+    <div class="header py-5 py-lg-6" >
+      <div class="container">
+
+        </div>
+      </div>
+
+    </div>
+
+    {% block content %}{% endblock content %}
+
+    {% include "includes/footer-fullscreen.html" %}
+
+  </div>
+
+  {% include "includes/scripts-fullscreen.html" %}
+
+</body>
+
+</html>

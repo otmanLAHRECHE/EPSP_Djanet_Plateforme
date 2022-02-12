@@ -1,0 +1,255 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Admin Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- Header -->
+    <div class="header pb-8 pt-5 pt-md-8" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+      <div class="container-fluid">
+        <div class="header-body">
+          <!-- Card stats -->
+          <div class="row">
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">users</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ user }} user</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-blue text-white rounded-circle shadow">
+                        <i class="fas fa-users"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fa fa-plus"></i> {{ user }}</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+              <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">vehicles</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ car }} vehicle</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                        <i class="fas fa-car"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ car }}</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">Service center</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ service_center }} center</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-gradient-light text-white rounded-circle shadow">
+                        <i class="fas fa-warehouse"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ service_center }}</span>
+                    <span class="text-nowrap">Since last month</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-lg-6">
+              <div class="card card-stats mb-4 mb-xl-0">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col">
+                      <h5 class="card-title text-uppercase text-muted mb-0">verifications</h5>
+                      <span class="h2 font-weight-bold mb-0">{{ verification }} verif</span>
+                    </div>
+                    <div class="col-auto">
+                      <div class="icon icon-shape bg-green text-white rounded-circle shadow">
+                        <i class="fas fa-oil-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="mt-3 mb-0 text-muted text-sm">
+                    <span class="text-success mr-2"><i class="fas fa-plus"></i> {{ verification }}</span>
+                    <span class="text-nowrap">Since last week</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid mt--7" style="background: rgb(215,246,255);
+background: linear-gradient(90deg, rgba(215,246,255,1) 72%, rgba(159,219,252,1) 100%, rgba(4,23,143,1) 100%);">
+
+    <div class="row">
+
+         <div id="container" class="col-xl-6 col-lg-6 mb-4"></div>
+            <div id="container2" class="col-xl-6 col-lg-6 mb-4"></div>
+    </div>
+
+        <br/>
+        <div class="row">
+
+         <div id="container3" class="col-xl-12 col-lg-6"></div>
+    </div>
+
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Maintenance by months'
+
+        },
+        xAxis: {
+            categories: [{% for entry in date %}'{{ entry }}'{% if not forloop.last %}, {% endif %}{% endfor %}]
+        },
+        series: [{
+            name: 'Verification',
+            color: 'green',
+            data: {{ verification_states }}
+        }, {
+            name: 'Reparations',
+            color: 'orange',
+            data: {{ reparation_states }}
+        }]
+    });
+  </script>
+
+<br/> <br/> <br/>
+
+
+
+
+  <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container2', {
+        title: {
+        text: 'Recommendation notification'
+    },
+
+    xAxis: {
+        categories: [{% for entry in date %}'{{ entry }}'{% if not forloop.last %}, {% endif %}{% endfor %}]
+
+    },
+
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+
+    series: [{
+        name: 'recommendation notification sent',
+        data: {{ recommendation }}
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+    });
+  </script>
+
+
+
+
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+  <script>
+    Highcharts.chart('container3', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Vehicles traded'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'Cars',
+            y: {{ car_trade }},
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Trucks',
+            y: {{ truck_trade }}
+        }, {
+            name: 'Pickups',
+            y: {{ pickup_trade }}
+        }]
+    }]
+});
+  </script>
+
+
+
+
+      {% include "includes/footer.html" %}
+
+    </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
