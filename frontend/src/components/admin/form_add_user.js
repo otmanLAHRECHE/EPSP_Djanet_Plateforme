@@ -15,7 +15,7 @@ export class Form extends Component {
     e.preventDefault();
     const { email, password, service } = this.state;
     const user = { email, password, service };
-    addNewUser(user);
+    addNewUser(user,localStorage.getItem("auth_token"));
     this.setState({
       email: '',
       password: '',

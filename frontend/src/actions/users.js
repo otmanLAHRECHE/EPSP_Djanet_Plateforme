@@ -1,7 +1,5 @@
 
-
 export const getUsers = async (token) => {
-    console.log(token);
   const response = await fetch(
       '/EPSP_Djanet_Plateforme/users_list/',
       {
@@ -16,7 +14,6 @@ export const getUsers = async (token) => {
   );
   const text = await response.text();
   if (response.status === 200) {
-    console.log("success", JSON.parse(text));
     console.log("Users loaded");
     return JSON.parse(text);
   } else {

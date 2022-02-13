@@ -8,15 +8,14 @@ export class Header extends Component {
 
   render() {
     const token = localStorage.getItem("auth_token");
-    console.log("header token "+token);
     let isAuthenticated= false;
 
     if(token==null){
         isAuthenticated = false;
-        console.log("header isAuthenticated "+isAuthenticated);
+        console.log("header is not Authenticated");
     }else {
          isAuthenticated = true;
-        console.log("header isAuthenticated "+isAuthenticated);
+        console.log("header isAuthenticated");
 
     }
 

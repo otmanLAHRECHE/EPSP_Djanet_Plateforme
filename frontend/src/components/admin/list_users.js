@@ -15,9 +15,9 @@ export class ListUsers extends Component {
 
 
   async componentDidMount() {
+    console.log("comp did mount");
     this.setState({users :await getUsers(localStorage.getItem("auth_token"))}) ;
-     console.log("comp did mount");
-    this.state.users.map((user) => (console.log(user.service)));
+    console.log("get state");
   }
 
   render() {
@@ -46,7 +46,7 @@ export class ListUsers extends Component {
                 <td>{user.service}</td>
                 <td>
                   <button
-                    onClick={deleteUser(this, user.id)}
+                    //onClick={deleteUser(user.id,this.state.token)}
                     className="btn btn-danger btn-sm"
                   >
                     {' '}
