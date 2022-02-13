@@ -19,7 +19,6 @@ class App extends Component {
     return (
         <BrowserRouter>
             <Fragment>
-              <Header />
               <div className="container">
                 <Routes>
                   <Route exact path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />

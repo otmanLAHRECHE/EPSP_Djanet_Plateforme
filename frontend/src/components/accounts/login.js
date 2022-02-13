@@ -10,7 +10,6 @@ export class Login extends Component {
     password: '',
   };
 
-
   onSubmit = async (e) => {
     e.preventDefault();
     console.log("Loggin in with", this.state.email, this.state.email);
@@ -25,7 +24,6 @@ export class Login extends Component {
     }
     const { email, password } = this.state;
     return (
-
 
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
@@ -61,6 +59,8 @@ export class Login extends Component {
           </form>
         </div>
       </div>
+
+
     );
   }
 }
