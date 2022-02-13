@@ -13,7 +13,7 @@ export const loadUser = () => async (token) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization':token,
+          'Authorization':`Token ${token}`,
         },
         body: JSON.stringify()
       }
@@ -49,9 +49,9 @@ export const login_api = async (username, password) => {
     );
   const text = await response.text();
   if (response.status === 200) {
-    console.log("success", JSON.parse(text));
+    console.log("success", JSON.parse(text).auth_token);
     console.log("Yeah! Authenticated! and stored");
-    await localStorage.setItem("auth_token", text.access);
+    await localStorage.setItem("auth_token", JSON.parse(text).auth_token);
   } else {
     console.log("failed", text);
     Object.entries(JSON.parse(text)).forEach(([key, value])=>{
@@ -71,7 +71,7 @@ export const register = async (email,password,service,token) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': token,
+          'Authorization': `Token ${token}`,
         },
         body: JSON.stringify({
               "email": email,
@@ -104,7 +104,7 @@ export const logout =  async (token) => {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': token,
+          'Authorization': `Token ${token}`,
         },
         body: JSON.stringify()
       }

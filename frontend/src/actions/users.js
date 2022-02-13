@@ -1,47 +1,84 @@
-import axios from 'axios';
-import { createMessage, returnErrors } from './messages';
-import { tokenConfig } from './auth';
-
-import { GET_USER, DELETE_USER, ADD_NEW_USER } from './types';
 
 
-export const getUsers = () => (dispatch, getState) => {
-    console.log(tokenConfig(getState));
-  axios
-    .get('/EPSP_Djanet_Plateforme/users_list/', tokenConfig(getState))
-    .then((res) => {
-      dispatch({
-        type: GET_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status,console.log(tokenConfig(getState)))));
+export const getUsers = async (token) => {
+    console.log(token);
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/users_list/',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':`Token ${token}`,
+        },
+        body: JSON.stringify()
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("Users loaded");
+    return JSON.parse(text);
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
+    });
+  }
 };
 
 
-export const deleteUser = (id) => (dispatch, getState) => {
-  axios
-    .delete(`/EPSP_Djanet_Plateforme/delete_user/${id}/`, tokenConfig(getState))
-    .then((res) => {
-      dispatch(createMessage({ deleteUser: 'User Deleted' }));
-      dispatch({
-        type: DELETE_USER,
-        payload: id,
-      });
-    })
-    .catch((err) => console.log(err));
+export const deleteUser = async (id,token) => {
+  const response = await fetch(
+      `/EPSP_Djanet_Plateforme/delete_user/${id}/`,
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':`Token ${token}`,
+        },
+        body: JSON.stringify()
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("User Deleted");
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
+    });
+  }
 };
 
 
-export const addNewUser = (lead) => (dispatch, getState) => {
-  axios
-    .post('/api/leads/', lead, tokenConfig(getState))
-    .then((res) => {
-      dispatch(createMessage({ addNewUser: 'User Added' }));
-      dispatch({
-        type: ADD_NEW_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => dispatch(returnErrors(err.response.data, err.response.status)));
+export const addNewUser = async (email,password,service,token) => {
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/register_user/',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':`Token ${token}`,
+        },
+        body: JSON.stringify({
+              "email": email,
+              "password": password,
+                "service":service,
+            })
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("success", JSON.parse(text));
+    console.log("User Added");
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
+    });
+  }
 };

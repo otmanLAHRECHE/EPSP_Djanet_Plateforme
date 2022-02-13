@@ -9,17 +9,13 @@ export class Form extends Component {
     service: '',
   };
 
-  static propTypes = {
-    addNewUser: PropTypes.func.isRequired,
-  };
-
   onChange = (e) => this.setState({ [e.target.email]: e.target.value });
 
   onSubmit = (e) => {
     e.preventDefault();
     const { email, password, service } = this.state;
     const user = { email, password, service };
-    this.props.addNewUser(user);
+    addNewUser(user);
     this.setState({
       email: '',
       password: '',

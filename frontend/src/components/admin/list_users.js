@@ -4,19 +4,24 @@ import PropTypes from 'prop-types';
 import { getUsers, deleteUser } from '../../actions/users';
 
 export class ListUsers extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      users : [],
+    }
+  }
 
-  static propTypes = {
-    users: PropTypes.array.isRequired,
-    getUsers: PropTypes.func.isRequired,
-    deleteUser: PropTypes.func.isRequired,
-  };
 
-  componentDidMount() {
-    this.props.getUsers();
+
+
+  async componentDidMount() {
+    this.setState({users :await getUsers(localStorage.getItem("auth_token"))}) ;
+     console.log("comp did mount");
+    this.state.users.map((user) => (console.log(user.service)));
   }
 
   render() {
-
+     console.log("list users render");
     return (
       <Fragment>
         <h2>Users</h2>
@@ -31,7 +36,9 @@ export class ListUsers extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.users.map((user) => (
+            {
+              this.state.users.map((user) => (
+
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.email}</td>
@@ -39,7 +46,7 @@ export class ListUsers extends Component {
                 <td>{user.service}</td>
                 <td>
                   <button
-                    onClick={this.props.deleteUser.bind(this, user.id)}
+                    onClick={deleteUser(this, user.id)}
                     className="btn btn-danger btn-sm"
                   >
                     {' '}
@@ -47,7 +54,8 @@ export class ListUsers extends Component {
                   </button>
                 </td>
               </tr>
-            ))}
+            ))
+            }
           </tbody>
         </table>
       </Fragment>
@@ -55,8 +63,6 @@ export class ListUsers extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  users: state.users.users,
-});
+
 
 export default ListUsers;
