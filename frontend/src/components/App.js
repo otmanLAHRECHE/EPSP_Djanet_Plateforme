@@ -17,9 +17,10 @@ class App extends Component {
   render() {
     console.log("render");
     return (
+
         <BrowserRouter>
             <Fragment>
-              <div className="container">
+              <div>
                 <Routes>
                   <Route exact path="/" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
                   <Route exact path="/login" element={<Login/>} />
