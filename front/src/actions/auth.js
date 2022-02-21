@@ -1,7 +1,7 @@
 
+import { useNavigate } from "react-router-dom";
 
-
-
+const navigate = useNavigate();
 
 
 // CHECK TOKEN & LOAD USER
@@ -52,6 +52,8 @@ export const login_api = async (username, password) => {
     console.log("success", JSON.parse(text).auth_token);
     console.log("Yeah! Authenticated! and stored");
     await localStorage.setItem("auth_token", JSON.parse(text).auth_token);
+    navigate("/");
+
   } else {
     console.log("failed", text);
     Object.entries(JSON.parse(text)).forEach(([key, value])=>{
