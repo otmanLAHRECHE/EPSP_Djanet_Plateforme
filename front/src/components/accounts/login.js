@@ -2,18 +2,38 @@ import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 import { login_api } from '../../actions/auth';
 import { LockClosedIcon } from '@heroicons/react/solid'
+import Alert from "../layouts/alert";
 
+let login_state= "";
+
+const Alert_show = () =>{
+    <Alert/>
+  }
+
+  const [showAlert, setShowAlert] = React.useState(false)
 
 export class Login extends Component {
+
   state = {
     email: '',
     password: '',
   };
 
+
+
   onSubmit = async (e) => {
     e.preventDefault();
     console.log("Loggin in with", this.state.email, this.state.password);
-    await login_api(this.state.email, this.state.password);
+    login_state = await login_api(this.state.email, this.state.password);
+     console.log(login_state);
+    if (login_state == "logged"){
+      console.log("logged it is");
+          return <Navigate to="/" />
+    }else {
+      console.log("alert");
+      setShowAlert(true);
+
+    }
   };
 
   onChange = (e) => this.setState({ [e.target.name]: e.target.value });
@@ -24,6 +44,8 @@ export class Login extends Component {
     }
     const { email, password } = this.state;
     return (
+
+
 
 
         <>
@@ -90,6 +112,11 @@ export class Login extends Component {
           </form>
         </div>
       </div>
+
+          { showAlert ? <Alert_show/> : null }
+
+
+
     </>
 
 
