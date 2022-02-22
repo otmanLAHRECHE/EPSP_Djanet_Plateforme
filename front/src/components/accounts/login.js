@@ -6,22 +6,26 @@ import Alert from "../layouts/alert";
 
 let login_state= "";
 
-const Alert_show = () =>{
-    <Alert/>
-  }
 
-  const [showAlert, setShowAlert] = React.useState(false)
+const [showAlert, setShowAlert] = React.useState(false);
 
 export class Login extends Component {
+
 
   state = {
     email: '',
     password: '',
   };
 
+  show_alert(){
+
+    setShowAlert(true);
+  }
+
 
 
   onSubmit = async (e) => {
+
     e.preventDefault();
     console.log("Loggin in with", this.state.email, this.state.password);
     login_state = await login_api(this.state.email, this.state.password);
@@ -31,7 +35,9 @@ export class Login extends Component {
           return <Navigate to="/" />
     }else {
       console.log("alert");
-      setShowAlert(true);
+      this.show_alert();
+      console.log(showAlert);
+
 
     }
   };
@@ -43,6 +49,8 @@ export class Login extends Component {
       return <Navigate to="/" />;
     }
     const { email, password } = this.state;
+
+    console.log("render login");
     return (
 
 
@@ -113,7 +121,7 @@ export class Login extends Component {
         </div>
       </div>
 
-          { showAlert ? <Alert_show/> : null }
+          { showAlert ? <Alert/> : null }
 
 
 
