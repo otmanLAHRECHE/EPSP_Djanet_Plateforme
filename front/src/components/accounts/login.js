@@ -7,24 +7,20 @@ import Alert from "../layouts/alert";
 let login_state= "";
 
 
-const [showAlert, setShowAlert] = React.useState(false);
-
 export class Login extends Component {
-
 
   state = {
     email: '',
     password: '',
+    alert:false,
   };
 
-  show_alert(){
 
-    setShowAlert(true);
-  }
 
 
 
   onSubmit = async (e) => {
+    this.setState({alert:false});
 
     e.preventDefault();
     console.log("Loggin in with", this.state.email, this.state.password);
@@ -35,8 +31,7 @@ export class Login extends Component {
           return <Navigate to="/" />
     }else {
       console.log("alert");
-      this.show_alert();
-      console.log(showAlert);
+      this.setState({alert:true});
 
 
     }
@@ -48,7 +43,9 @@ export class Login extends Component {
     if (localStorage.getItem("auth_token")) {
       return <Navigate to="/" />;
     }
-    const { email, password } = this.state;
+
+    const email  = this.state.email;
+    const password  = this.state.password;
 
     console.log("render login");
     return (
@@ -121,7 +118,7 @@ export class Login extends Component {
         </div>
       </div>
 
-          { showAlert ? <Alert/> : null }
+          { this.state.alert ? <Alert/> : null }
 
 
 
