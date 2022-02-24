@@ -12,8 +12,6 @@ export class ListUsers extends Component {
   }
 
 
-
-
   async componentDidMount() {
     console.log("comp did mount");
     this.setState({users :await getUsers(localStorage.getItem("auth_token"))}) ;

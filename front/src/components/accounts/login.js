@@ -28,7 +28,7 @@ export class Login extends Component {
      console.log(login_state);
     if (login_state == "logged"){
       console.log("logged it is");
-          return <Navigate to="/" />
+          this.setState({email:"",password:""});
     }else {
       console.log("alert");
       this.setState({alert:true});

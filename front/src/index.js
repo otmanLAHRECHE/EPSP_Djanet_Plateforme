@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import "./main.css";
 import {BrowserRouter, HashRouter as Router, Route, Routes} from 'react-router-dom';
 import PrivateRoute from "./components/common/private_route";
-import Dashboard from "./components/admin/dashboard";
+import {Dashboard} from "./components/admin/dashboard";
 import Login from "./components/accounts/login";
 
 

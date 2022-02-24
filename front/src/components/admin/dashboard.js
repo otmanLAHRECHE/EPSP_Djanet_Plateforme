@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 import Form_add_user from './form_add_user';
 import List_users from './list_users';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
@@ -12,13 +12,7 @@ const user = {
   imageUrl:
     'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
 }
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Health Workers', href: '#', current: false },
-  { name: 'Stock Management', href: '#', current: false },
-  { name: 'Services', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
-]
+let navigation = []
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
@@ -29,10 +23,48 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
-  return (
+
+
+export class Dashboard extends Component{
+
+    state={
+        nav:"",
+
+    }
+
+    componentDidMount() {
+        this.setState({nav:"Dashboard"});
+        navigation= [
+              { name: 'Dashboard', href: '#', current: true },
+              { name: 'Health Workers', href: '#', current: false },
+              { name: 'Stock Management', href: '#', current: false },
+              { name: 'Services', href: '#', current: false },
+              { name: 'Reports', href: '#', current: false },
+            ]
+    }
+
+    clickNav(name){
+        if(name==this.state.nav){
+        }else {
+            var i =0;
+            while (i<5){
+                if(navigation[i].name==name){
+                    navigation[i].current=true;
+                }else {
+                    navigation[i].current=false;
+                }
+                i++;
+            }
+            this.setState({nav:name});
+        }
+
+    }
+
+
+    render() {
+     return (
       <>
-<div className="min-h-full">
+    <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
@@ -52,7 +84,8 @@ export default function Dashboard() {
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
-                        {navigation.map((item) => (
+                        {
+                            navigation.map((item) => (
                           <a
                             key={item.name}
                             href={item.href}
@@ -63,10 +96,12 @@ export default function Dashboard() {
                               'px-3 py-2 rounded-md text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
+                            onClick={this.clickNav(item.name)}
                           >
                             {item.name}
                           </a>
-                        ))}
+                        ))
+                        }
                       </div>
                     </div>
                   </div>
@@ -209,4 +244,8 @@ export default function Dashboard() {
       </>
 
   );
+
+ }
+
+
 }
