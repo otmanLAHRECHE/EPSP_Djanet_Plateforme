@@ -3,8 +3,8 @@ import Form_add_user from './form_add_user';
 import List_users from './list_users';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
-import Dash from "./dashboard_main";
-import Health_workers from "./health_workers";
+import {Dash} from "./dashboard_main";
+import {Health_workers} from "./health_workers";
 
 
 const user = {

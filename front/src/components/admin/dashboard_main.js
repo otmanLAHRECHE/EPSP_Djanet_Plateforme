@@ -1,8 +1,10 @@
 
-import React from 'react';
+import React, {Component} from 'react';
+import {render} from "react-dom";
 
-export default function Dash(){
-    return(
+export class Dash extends Component{
+    render(){
+        return(
          <div className="grid grid-cols-4 gap-4">
                   <div className="bg-white shadow overflow-hidden sm:rounded-lg">
                       <div className="px-4 py-5 sm:px-6">
@@ -22,4 +24,9 @@ export default function Dash(){
          </div>
 
     );
+
+
+    }
+
+
 }
