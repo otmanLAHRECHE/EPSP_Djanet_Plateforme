@@ -4,6 +4,7 @@ import List_users from './list_users';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import Dash from "./dashboard_main";
+import Health_workers from "./health_workers";
 
 
 const user = {
@@ -22,6 +23,7 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
+
 
 
 
@@ -44,6 +46,7 @@ export class Dashboard extends Component{
     }
 
     clickNav(name){
+        console.log("click nav");
         if(name==this.state.nav){
         }else {
             var i =0;
@@ -59,6 +62,21 @@ export class Dashboard extends Component{
         }
 
     }
+
+    choseNav(){
+        if (this.state.nav=='Dashboard'){
+            return <Dash/>
+        }else if(this.state.nav=='Health Workers'){
+            return <Health_workers/>
+        }else if(this.state.nav=='Stock Management'){
+
+        }else if(this.state.nav=='Services'){
+
+        }else if(this.state.nav=='Reports'){
+
+        }
+    }
+
 
 
     render() {
@@ -88,7 +106,6 @@ export class Dashboard extends Component{
                             navigation.map((item) => (
                           <a
                             key={item.name}
-                            href={item.href}
                             className={classNames(
                               item.current
                                 ? 'bg-gray-900 text-white'
@@ -96,7 +113,8 @@ export class Dashboard extends Component{
                               'px-3 py-2 rounded-md text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}
-                            onClick={this.clickNav(item.name)}
+                            onClick={() => {this.clickNav(item.name)}}
+
                           >
                             {item.name}
                           </a>
@@ -221,13 +239,14 @@ export class Dashboard extends Component{
 
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <h1 className="text-3xl font-bold text-gray-900">{this.state.nav}</h1>
           </div>
         </header>
         <main>
           <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
-            <Dash/>
+
+              {this.choseNav()}
 
 
           </div>
