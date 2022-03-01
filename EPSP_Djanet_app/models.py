@@ -26,10 +26,10 @@ class UserManager(BaseUserManager):
         return user
 
     def create_user(self, email, password, **extra_fields):
-        return self._create_user(email, password, False,False, False, **extra_fields)
+        return self._create_user(email, password, False, False, False, **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
-        user = self._create_user(email, password, True,True, True, **extra_fields)
+        user = self._create_user(email, password, True, True, True, **extra_fields)
         user.save(using=self._db)
         return user
 
@@ -51,4 +51,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return "/users/%i/" % (self.pk)
+
+
+class Service(models.Model):
+    serviceName = models.CharField(max_length=20)
+
+    def __str__(self): return str(self.id)
+
+
+class HealthWorkers(models.Model):
+    firstName = models.CharField(max_length=15)
+    lastName = models.CharField(max_length=15)
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="service_workers")
+    group = models.CharField(max_length=15)
+
+    def __str__(self): return str(self.id)
+
+
 
