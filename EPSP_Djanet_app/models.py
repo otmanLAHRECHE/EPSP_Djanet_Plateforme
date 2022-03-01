@@ -68,4 +68,17 @@ class HealthWorkers(models.Model):
     def __str__(self): return str(self.id)
 
 
+class Garde(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="gardes_of_service")
+    health_worker = models.ForeignKey(HealthWorkers, on_delete=models.CASCADE, related_name="gardes_of_worker")
+    date = models.DateField()
 
+    def __str__(self): return str(self.id)
+
+
+class Morning(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="mornings_of_service")
+    health_worker = models.ForeignKey(HealthWorkers, on_delete=models.CASCADE, related_name="mornings_of_worker")
+    date = models.DateField()
+
+    def __str__(self): return str(self.id)
