@@ -53,32 +53,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         return "/users/%i/" % (self.pk)
 
 
-class Service(models.Model):
-    serviceName = models.CharField(max_length=20)
-
-    def __str__(self): return str(self.id)
 
 
-class HealthWorkers(models.Model):
-    firstName = models.CharField(max_length=15)
-    lastName = models.CharField(max_length=15)
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="service_workers")
-    group = models.CharField(max_length=15)
-
-    def __str__(self): return str(self.id)
-
-
-class Garde(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="gardes_of_service")
-    health_worker = models.ForeignKey(HealthWorkers, on_delete=models.CASCADE, related_name="gardes_of_worker")
-    date = models.DateField()
-
-    def __str__(self): return str(self.id)
-
-
-class Morning(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.CASCADE, related_name="mornings_of_service")
-    health_worker = models.ForeignKey(HealthWorkers, on_delete=models.CASCADE, related_name="mornings_of_worker")
-    date = models.DateField()
-
-    def __str__(self): return str(self.id)
