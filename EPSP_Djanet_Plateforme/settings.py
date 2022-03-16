@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'labo',
     'rest_framework.authtoken',
-    'EPSP_Djanet_app',
     'rest_framework',
     'corsheaders',
     'djoser',

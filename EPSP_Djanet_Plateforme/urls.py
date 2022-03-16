@@ -18,6 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('EPSP_Djanet_Plateforme/', include('EPSP_Djanet_app.urls')),
+    path('EPSP_Djanet_Plateforme/', include('labo.urls')),
     path('', include('front.urls')),
 ]
