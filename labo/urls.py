@@ -1,6 +1,6 @@
 from django.urls import path, include
 
-from EPSP_Djanet_app import views
+from labo import views
 
 urlpatterns = [
     path('auth-rest/', include('rest_framework.urls')),   # without token

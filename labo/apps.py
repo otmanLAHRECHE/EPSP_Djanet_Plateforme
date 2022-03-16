@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class EpspDjanetAppConfig(AppConfig):
+class LaboConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'EPSP_Djanet_app'
+    name = 'labo'

@@ -26,7 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'EPSP_Djanet_app.User'
+AUTH_USER_MODEL = 'labo.User'
 
 # Application definition
 
@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'EPSP_Djanet_app',
+    'labo',
     'rest_framework.authtoken',
+    'EPSP_Djanet_app',
     'rest_framework',
     'corsheaders',
     'djoser',
