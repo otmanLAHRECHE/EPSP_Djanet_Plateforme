@@ -24,11 +24,24 @@ SECRET_KEY = 'django-insecure-a3^viijtg92q&^jw*oj3ow!+x-j=9hq#s-z*x5^r20zef9t^53
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8000',
+]
+
 ALLOWED_HOSTS = ['*']
+
 
 AUTH_USER_MODEL = 'labo.User'
 
 # Application definition
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -139,7 +152,5 @@ REST_FRAMEWORK = {
     ),
 }
 
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:8000',
-]
+
 

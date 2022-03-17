@@ -8,15 +8,14 @@ import {Health_workers} from "./health_workers";
 
 
 const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
+  name: 'SERVICE',
+  email: 'email@.com',
   imageUrl:
     'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
 }
 let navigation = []
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
+  { name: 'Admin Profile', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
 
@@ -40,8 +39,6 @@ export class Dashboard extends Component{
               { name: 'Dashboard', href: '#', current: true },
               { name: 'Health Workers', href: '#', current: false },
               { name: 'Stock Management', href: '#', current: false },
-              { name: 'Services', href: '#', current: false },
-              { name: 'Reports', href: '#', current: false },
             ]
     }
 
