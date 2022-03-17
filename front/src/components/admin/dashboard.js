@@ -37,14 +37,16 @@ export class Dashboard extends Component{
         this.setState({nav:"Dashboard"});
         navigation= [
               { name: 'Dashboard', href: '#', current: true },
-              { name: 'Health Workers', href: '#', current: false },
-              { name: 'Stock Management', href: '#', current: false },
+              { name: 'Liste', href: '#', current: false },
+              { name: 'Liste300', href: '#', current: false },
             ]
     }
 
     clickNav(name){
         console.log("click nav");
-        if(name==this.state.nav){
+        console.log(name);
+        try{
+            if(name==this.state.nav){
         }else {
             var i =0;
             while (i<5){
@@ -57,6 +59,10 @@ export class Dashboard extends Component{
             }
             this.setState({nav:name});
         }
+        }catch (e) {
+            console.log(e.message)
+        }
+
 
     }
 
