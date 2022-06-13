@@ -22,8 +22,6 @@ export class Dash extends Component{
 
     );
 
-
     }
-
 
 }
