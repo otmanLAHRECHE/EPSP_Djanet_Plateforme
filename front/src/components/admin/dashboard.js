@@ -24,8 +24,6 @@ function classNames(...classes) {
 }
 
 
-
-
 export class Dashboard extends Component{
 
     state={
@@ -43,19 +41,20 @@ export class Dashboard extends Component{
     }
 
     clickNav(name){
-        console.log("click nav");
-        console.log(name);
         try{
-            if(name==this.state.nav){
+            if(name===this.state.nav){
         }else {
+
+            console.log("enter");
             var i =0;
-            while (i<5){
-                if(navigation[i].name==name){
+            while (i<3){
+                if(navigation[i].name===name){
                     navigation[i].current=true;
                 }else {
                     navigation[i].current=false;
                 }
-                i++;
+
+            i++;
             }
             this.setState({nav:name});
         }
@@ -63,19 +62,18 @@ export class Dashboard extends Component{
             console.log(e.message)
         }
 
-
     }
 
     choseNav(){
-        if (this.state.nav=='Dashboard'){
+        if (this.state.nav === 'Dashboard'){
             return <Dash/>
-        }else if(this.state.nav=='Health Workers'){
+        }else if(this.state.nav === 'Health Workers'){
             return <Health_workers/>
-        }else if(this.state.nav=='Stock Management'){
+        }else if(this.state.nav === 'Stock Management'){
 
-        }else if(this.state.nav=='Services'){
+        }else if(this.state.nav === 'Services'){
 
-        }else if(this.state.nav=='Reports'){
+        }else if(this.state.nav === 'Reports'){
 
         }
     }
