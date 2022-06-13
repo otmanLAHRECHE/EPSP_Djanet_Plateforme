@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react';
-import {render} from "react-dom";
 
 export class Dash extends Component{
     render(){
@@ -18,8 +17,6 @@ export class Dash extends Component{
                              <p className="mt-1 max-w-2xl text-sm text-gray-500">There are 50 worker</p>
                          </div>
                   </div>
-                  <div className="bg-white shadow overflow-hidden sm:rounded-lg"></div>
-                  <div className="bg-white shadow overflow-hidden sm:rounded-lg"></div>
 
          </div>
 

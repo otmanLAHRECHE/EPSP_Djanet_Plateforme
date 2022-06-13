@@ -35,8 +35,8 @@ export class Dashboard extends Component{
         this.setState({nav:"Dashboard"});
         navigation= [
               { name: 'Dashboard', href: '#', current: true },
-              { name: 'Liste', href: '#', current: false },
-              { name: 'Liste300', href: '#', current: false },
+              { name: 'Historique', href: '#', current: false },
+              { name: 'Statestiques', href: '#', current: false },
             ]
     }
 
@@ -44,7 +44,6 @@ export class Dashboard extends Component{
         try{
             if(name===this.state.nav){
         }else {
-
             console.log("enter");
             var i =0;
             while (i<3){
@@ -53,7 +52,6 @@ export class Dashboard extends Component{
                 }else {
                     navigation[i].current=false;
                 }
-
             i++;
             }
             this.setState({nav:name});
@@ -212,13 +210,7 @@ export class Dashboard extends Component{
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>
                       <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
                     </div>
-                    <button
-                      type="button"
-                      className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                    >
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    
                   </div>
                   <div className="mt-3 px-2 space-y-1">
                     {userNavigation.map((item) => (
