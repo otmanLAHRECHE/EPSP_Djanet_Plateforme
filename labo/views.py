@@ -28,3 +28,29 @@ def addNewUser(request):
         if u_s.is_valid():
             u_s.save()
         return Response({"state" : "user added"})
+
+
+@api_view(['GET'])
+def getSelectedUser(request):
+    if request.method == 'GET':
+        data=json.loads(request.body)
+        print("user id........................................",data["id"])
+
+        queryset = User.objects.get(id= data["id"])
+
+        print("queryset.......................................",queryset)
+
+        if not queryset:
+            response = {"user": None}
+            print(response)
+        else:
+            user_serialis = UserSerializer(queryset)
+            response = user_serialis.data
+            print(response)
+
+
+        return Response(response)
+    
+    
+        
+        

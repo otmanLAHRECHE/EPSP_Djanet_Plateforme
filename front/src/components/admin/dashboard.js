@@ -4,15 +4,18 @@ import List_users from './list_users';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import {Dash} from "./dashboard_main";
-import {Health_workers} from "./health_workers";
+import {ListUsers} from "./list_users";
+import image1 from '../../../public/images/app_image.png'
+import image_admin from '../../../public/images/user_image.png'
+
+
 
 
 const user = {
-  name: 'SERVICE',
-  email: 'email@.com',
-  imageUrl:
-    'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png',
+  name: 'test',
+  email: 'email.test@test',
 }
+
 let navigation = []
 const userNavigation = [
   { name: 'Admin Profile', href: '#' },
@@ -31,12 +34,13 @@ export class Dashboard extends Component{
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({nav:"Dashboard"});
         navigation= [
               { name: 'Dashboard', href: '#', current: true },
               { name: 'Historique', href: '#', current: false },
               { name: 'Statestiques', href: '#', current: false },
+              { name: 'Users', href: '#', current: false },
             ]
     }
 
@@ -46,7 +50,7 @@ export class Dashboard extends Component{
         }else {
             console.log("enter");
             var i =0;
-            while (i<3){
+            while (i<4){
                 if(navigation[i].name===name){
                     navigation[i].current=true;
                 }else {
@@ -65,13 +69,11 @@ export class Dashboard extends Component{
     choseNav(){
         if (this.state.nav === 'Dashboard'){
             return <Dash/>
-        }else if(this.state.nav === 'Health Workers'){
-            return <Health_workers/>
-        }else if(this.state.nav === 'Stock Management'){
+        }else if(this.state.nav === 'Users'){
+            return <ListUsers/>
+        }else if(this.state.nav === 'Historique'){
 
-        }else if(this.state.nav === 'Services'){
-
-        }else if(this.state.nav === 'Reports'){
+        }else if(this.state.nav === 'Statestiques'){
 
         }
     }
@@ -91,7 +93,7 @@ export class Dashboard extends Component{
                     <div className="flex-shrink-0 inline-flex">
                       <img
                         className="h-12 w-12"
-                        src="https://cdn.icon-icons.com/icons2/2380/PNG/512/coronavirus_covid_hospital_building_health_medical_icon_143990.png"
+                        src={image1}
                         alt="Workflow"
                       />
                         <div className="flex items-center">
@@ -124,20 +126,13 @@ export class Dashboard extends Component{
                   </div>
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
-                      <button
-                        type="button"
-                        className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                      >
-                        <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
-                      </button>
-
+                      
                       {/* Profile dropdown */}
                       <Menu as="div" className="ml-3 relative">
                         <div>
                           <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                             <span className="sr-only">Open user menu</span>
-                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                            <img className="h-8 w-8 rounded-full" src={image_admin} alt="" />
                           </Menu.Button>
                         </div>
                         <Transition
@@ -204,7 +199,7 @@ export class Dashboard extends Component{
                 <div className="pt-4 pb-3 border-t border-gray-700">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                      <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                      <img className="h-10 w-10 rounded-full" src={image_admin} alt="" />
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-white">{user.name}</div>

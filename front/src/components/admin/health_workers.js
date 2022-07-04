@@ -12,10 +12,31 @@ const people = [
     image:
       'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
   },
-  // More people...
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    department: 'Optimization',
+    role: 'Admin',
+    email: 'jane.cooper@example.com',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    department: 'Optimization',
+    role: 'Admin',
+    email: 'jane.cooper@example.com',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  
 ]
-
+  
 export class Health_workers extends Component{
+
+
+  
     render() {
         return(
          <div className="flex flex-col">
@@ -35,7 +56,7 @@ export class Health_workers extends Component{
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Title
+                    Service
                   </th>
                   <th
                     scope="col"
