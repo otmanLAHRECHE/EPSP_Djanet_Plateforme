@@ -24,6 +24,31 @@ export const getUsers = async (token) => {
   }
 };
 
+export const getCurentUser = async (token) => {
+  const response = await fetch(
+      '/EPSP_Djanet_Plateforme/auth/users/me/',
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization':`Token ${token}`,
+        },
+        body: JSON.stringify()
+      }
+  );
+  const text = await response.text();
+  if (response.status === 200) {
+    console.log("Users loaded");
+    return JSON.parse(text);
+  } else {
+    console.log("failed", text);
+    Object.entries(JSON.parse(text)).forEach(([key, value]) => {
+      fail(`${key}: ${value}`);
+    });
+  }
+};
+
 
 export const deleteUser = async (id,token) => {
   const response = await fetch(

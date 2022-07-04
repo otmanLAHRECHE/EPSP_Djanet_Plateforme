@@ -7,11 +7,12 @@ import {Dash} from "./dashboard_main";
 import {ListUsers} from "./list_users";
 import image1 from '../../../public/images/app_image.png'
 import image_admin from '../../../public/images/user_image.png'
+import { getCurentUser } from '../../actions/users';
 
 
 
 
-const user = {
+var user = {
   name: 'test',
   email: 'email.test@test',
 }
@@ -42,6 +43,8 @@ export class Dashboard extends Component{
               { name: 'Statestiques', href: '#', current: false },
               { name: 'Users', href: '#', current: false },
             ]
+
+            user = await getCurentUser(localStorage.getItem("auth_token"));
     }
 
     clickNav(name){

@@ -22,40 +22,67 @@ export class ListUsers extends Component {
      console.log("list users render");
     return (
       <Fragment>
-        <h2>Users</h2>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Email</th>
-              <th>Date of register</th>
-              <th>Service</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.users.map((user) => (
-
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.email}</td>
-                <td>{user.date_joined}</td>
-                <td>{user.service}</td>
-                <td>
-                  <button
-                    //onClick={deleteUser(user.id,this.state.token)}
-                    className="btn btn-danger btn-sm"
+        <div className="flex flex-col">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    {' '}
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))
-            }
-          </tbody>
-        </table>
+                    ID
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Date joined
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Service or role
+                  </th>
+                  <th scope="col" className="relative px-6 py-3">
+                    <span className="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {this.state.users.map((user) => (
+                  <tr>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex items-center">
+                        
+                        <div className="ml-4">
+                          <div className="text-sm text-gray-500">{user.id}</div>
+                        </div>
+                      </div>
+                    </td>
+                    
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.date_joined}</td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.service}</td>
+                    
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
       </Fragment>
     );
   }
